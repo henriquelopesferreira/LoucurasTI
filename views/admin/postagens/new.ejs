@@ -1,0 +1,40 @@
+<%- include('../../partials/header.ejs') %>
+    <%- include('../../partials/navbar.ejs') %>
+
+        <body>
+            <div class="container">
+                <hr>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Novo Artigo</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/postagens/save" method="POST">
+                            <input class="form-control" type="text" name="title" placeholder="Titulo da postagem"> <br>
+                            <textarea class="form-control" id="postagens" placeholder="Digite a postagens" name="body"  cols="30" rows="10"></textarea> <br>
+                            <label for="">Categorias</label>
+                            <select class="form-control" name="category" id="category">
+                                <% categories.forEach((category) => { %>
+                                    <option value=" <%= category.id%>">
+                                        <%= category.title %>
+                                    </option>
+                                <% })%>
+                            </select> <br>
+                            <button class="btn btn-success">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+<%- include('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "#postagem",
+        Plugin: [
+            'advlist autolink link image lists print hr searchreplace insertdatetime media save paste emoticons'
+        ]
+    })
+</script>

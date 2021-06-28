@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const Article = require("./Postagem");
+const Postagem = require("./Postagem");
 const Category = require("../categories/Category")
 const slugify = require("slugify")
 
 router.get("/admin/postagens", (req,res) => {
-    res.send("teste de postagens");
+    Postagem.findAll(   
+        
+    ).then(postagem =>{
+        res.render("./admin/postagens/index", {postagem, postagem});
+    })
+
 }); 
 
 router.get("/admin/article/new", (req,res) => {

@@ -1,26 +1,22 @@
-const { STRING } = require("sequelize");
 const Sequelize = require("sequelize");
-const Category = require("../categories/Category");
 const connection = require("../database/database");
+const Category = require("../categories/Category");
 
-const Article = connection.define('article',{
+const Article = connection.define('articles',{
     title:{
         type: Sequelize.STRING,
         allowNull: false
-    },
-    slug:{
-        type: STRING,
+    },slug: {
+        type: Sequelize.STRING,
         allowNull: false
     },
-    body:{
+    body: {
         type: Sequelize.TEXT,
         allowNull: false
     }
 })
 
-Category.hasMany(Article);
-Article.belongsTo(Category);
-
-// Article.sync({force:true});
+Category.hasMany(Article); // UMA Categoria tem muitos artigos
+Article.belongsTo(Category); // UM Artigo pertence a uma categoria
 
 module.exports = Article;
